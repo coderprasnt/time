@@ -65,4 +65,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Link: [https://github.com/your-username/time-management-site](https://github.com/coderprasnt/time.git)
+Project Link: [https://coderprasnt.github.io/time](https://github.com/coderprasnt/time.git)
