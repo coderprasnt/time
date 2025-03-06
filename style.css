@@ -9,6 +9,23 @@
   box-sizing: border-box;
 }
 
+.marquee {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    animation: marquee 10s linear infinite;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
 body {
   background-color: #3494e4;
   color: #fff;
