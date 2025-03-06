@@ -1,0 +1,84 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em 0;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: space-around;
+    padding: 2em;
+}
+
+section {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+#task-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+#task-form input {
+    flex: 1;
+    padding: 0.5em;
+    margin-right: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#task-form button {
+    padding: 0.5em 1em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#task-list {
+    list-style: none;
+    padding: 0;
+}
+
+#task-list li {
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+#timer-display {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+button {
+    padding: 0.5em 1em;
+    margin: 0.5em 0.5em 0 0;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
