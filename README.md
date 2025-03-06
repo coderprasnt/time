@@ -23,7 +23,7 @@ Welcome to the Time Management Site! This application helps you manage your time
 
 ## Demo
 
-Check out the live demo of the application: [Time Management Site Demo](http://your-demo-link.com)
+Check out the live demo of the application: [Time Management Site Demo](https://coderprasnt.github.io/time)
 
 ## Installation
 
@@ -39,28 +39,8 @@ To get a local copy up and running, follow these simple steps.
 1. **Clone the repository**
 
     ```bash
-    git clone https://github.com/your-username/time-management-site.git
+   
     ```
-
-2. **Navigate to the project directory**
-
-    ```bash
-    cd time-management-site
-    ```
-
-3. **Install dependencies**
-
-    ```bash
-    npm install
-    ```
-
-4. **Start the development server**
-
-    ```bash
-    npm start
-    ```
-
-The application should now be running on `http://localhost:3000`.
 
 ## Usage
 
