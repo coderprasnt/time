@@ -39,7 +39,7 @@ To get a local copy up and running, follow these simple steps.
 1. **Clone the repository**
 
     ```bash
-   
+   https://github.com/coderprasnt/time.git
     ```
 
 ## Usage
@@ -65,6 +65,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Your Name - [@your-twitter-handle](https://twitter.com/your-twitter-handle) - your-email@example.com
-
-Project Link: [https://github.com/your-username/time-management-site](https://github.com/your-username/time-management-site)
+Project Link: [https://github.com/your-username/time-management-site](https://github.com/coderprasnt/time.git)
