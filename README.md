@@ -29,10 +29,6 @@ Check out the live demo of the application: [Time Management Site Demo](https://
 
 To get a local copy up and running, follow these simple steps.
 
-### Prerequisites
-
-- Node.js
-- npm
 
 ### Installation Steps
 
