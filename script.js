@@ -1,65 +1,90 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const taskForm = document.getElementById('task-form');
-    const taskInput = document.getElementById('task-input');
-    const taskList = document.getElementById('task-list');
+const listers = document.getElementById('liters');
+const percentage = document.getElementById('percentage');
+const remained = document.getElementById('remained');
+const minus = document.getElementById('minus');
+const plus = document.getElementById('plus');
+const smallCups = document.querySelectorAll('.cup-small');
+const cups = document.getElementById("cups");
+//converting NodeList from querySelectorAll() to an array
+let smallCupsArr = Array.from(smallCups);
+let goal = 2;
 
-    taskForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        addTask(taskInput.value);
-        taskInput.value = '';
-    });
+minus.addEventListener("click", () => updateGoal("-"));
+plus.addEventListener("click", () => updateGoal("+"));
 
-    function addTask(task) {
-        const li = document.createElement('li');
-        li.textContent = task;
-        taskList.appendChild(li);
+function updateGoal(sign) {
+    //take plus or minus string sign
+    if (sign == "+" && goal < 3.75) {
+        goal += 0.25;
+        addCup();
+    }
+    else if (sign == "-" && goal > 2){ 
+        goal -= 0.25;
+        deleteCup();
+    }
+    document.getElementById("goal").innerText = goal;
+    listers.innerText = `${goal}L`;
+    updateBigCup();
+    console.log(smallCupsArr);
+
+}
+
+const addCup = () => {
+    const newCup = document.createElement('div');
+    newCup.classList.add("cup", "cup-small");
+    const newContent = document.createTextNode("250 ml");
+    newCup.appendChild(newContent);
+    const INDEX = smallCupsArr.length;
+    newCup.addEventListener('click', () => highlightCups(INDEX))
+    cups.appendChild(newCup);
+    smallCupsArr.push(newCup);
+}
+
+const deleteCup = () => {
+    cups.removeChild(cups.lastChild);
+    smallCupsArr.pop();
+}
+
+
+smallCupsArr.forEach((cup, idx) => {
+    cup.addEventListener('click', () => highlightCups(idx))
+})
+
+function highlightCups(idx) {
+    if (idx === smallCupsArr.length - 1 && smallCupsArr[idx].classList.contains("full")) idx--;
+    else if(smallCupsArr[idx].classList.contains('full') && !smallCupsArr[idx].nextElementSibling.classList.contains('full')) {
+        idx--
     }
 
-    let timerInterval;
-    let timerSeconds = 0;
+    smallCupsArr.forEach((cup, idx2) => {
+        if(idx2 <= idx) {
+            cup.classList.add('full')
+        } else {
+            cup.classList.remove('full')
+        }
+    })
 
-    const timerDisplay = document.getElementById('timer-display');
-    const startTimerButton = document.getElementById('start-timer');
-    const stopTimerButton = document.getElementById('stop-timer');
-    const resetTimerButton = document.getElementById('reset-timer');
+    updateBigCup();
+}
 
-    startTimerButton.addEventListener('click', startTimer);
-    stopTimerButton.addEventListener('click', stopTimer);
-    resetTimerButton.addEventListener('click', resetTimer);
+function updateBigCup() {
+    const fullCups = document.querySelectorAll('.cup-small.full').length;
+    const totalCups = smallCupsArr.length;
 
-    function startTimer() {
-        timerInterval = setInterval(() => {
-            timerSeconds++;
-            updateTimerDisplay();
-        }, 1000);
-        startTimerButton.disabled = true;
-        stopTimerButton.disabled = false;
-        resetTimerButton.disabled = false;
+    if(fullCups === 0) {
+        percentage.style.visibility = 'hidden'
+        percentage.style.height = 0
+    } else {
+        percentage.style.visibility = 'visible'
+        percentage.style.height = `${fullCups / totalCups * 330}px`
+        percentage.innerText = `${Math.round(fullCups / totalCups * 100)}%`
     }
 
-    function stopTimer() {
-        clearInterval(timerInterval);
-        startTimerButton.disabled = false;
-        stopTimerButton.disabled = true;
+    if(fullCups === totalCups) {
+        remained.style.visibility = 'hidden'
+        remained.style.height = 0
+    } else {
+        remained.style.visibility = 'visible'
+        listers.innerText = `${goal - (250 * fullCups / 1000)}L`
     }
-
-    function resetTimer() {
-        clearInterval(timerInterval);
-        timerSeconds = 0;
-        updateTimerDisplay();
-        startTimerButton.disabled = false;
-        stopTimerButton.disabled = true;
-        resetTimerButton.disabled = true;
-    }
-
-    function updateTimerDisplay() {
-        const hours = Math.floor(timerSeconds / 3600);
-        const minutes = Math.floor((timerSeconds % 3600) / 60);
-        const seconds = timerSeconds % 60;
-        timerDisplay.textContent = `${padNumber(hours)}:${padNumber(minutes)}:${padNumber(seconds)}`;
-    }
-
-    function padNumber(num) {
-        return num.toString().padStart(2, '0');
-    }
-});
+}
